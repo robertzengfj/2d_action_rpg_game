@@ -11,6 +11,8 @@ public class Enemy_Movement : MonoBehaviour
 
     public float speed = 4f;
 
+    private int faceingDirection = -1;   
+
     // Start is called before the first frame update
     void Start()
     {
