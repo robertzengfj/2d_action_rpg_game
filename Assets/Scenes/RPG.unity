@@ -903,7 +903,7 @@ Tilemap:
       - {fileID: -775407889, guid: f9bf93ae40523ef45bcf59f3c386a994, type: 3}
       - {fileID: 1844796759, guid: f9bf93ae40523ef45bcf59f3c386a994, type: 3}
       - {fileID: 286550685, guid: f9bf93ae40523ef45bcf59f3c386a994, type: 3}
-      m_AnimationSpeed: 5.0000005
+      m_AnimationSpeed: 5
       m_AnimationTimeOffset: 0
       m_Flags: 0
   - first: {x: -6, y: -19, z: 0}
@@ -1143,7 +1143,7 @@ Tilemap:
       - {fileID: -608137119, guid: 0c83ad5ea540dda4798d2d0eb296eea1, type: 3}
       - {fileID: -1000876155, guid: 0c83ad5ea540dda4798d2d0eb296eea1, type: 3}
       - {fileID: -1873629743, guid: 0c83ad5ea540dda4798d2d0eb296eea1, type: 3}
-      m_AnimationSpeed: 5
+      m_AnimationSpeed: 5.0000005
       m_AnimationTimeOffset: 0
       m_Flags: 0
   - first: {x: 3, y: 1, z: 0}
@@ -6617,6 +6617,8 @@ GameObject:
   - component: {fileID: 1926383401}
   - component: {fileID: 1926383400}
   - component: {fileID: 1926383404}
+  - component: {fileID: 1926383405}
+  - component: {fileID: 1926383406}
   m_Layer: 0
   m_Name: Enemy_Torch
   m_TagString: Untagged
@@ -6656,8 +6658,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.019690514, y: -0.11814332}
-  m_Size: {x: 0.5714998, y: 0.79465914}
+  m_Offset: {x: 0.002563715, y: -0.045356035}
+  m_Size: {x: 0.6913848, y: 0.9402337}
   m_Direction: 0
 --- !u!50 &1926383401
 Rigidbody2D:
@@ -6685,7 +6687,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 7
+  m_Constraints: 4
 --- !u!212 &1926383402
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -6766,6 +6768,54 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 1
+--- !u!114 &1926383405
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1926383399}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 06bb4bc2a399a5341bc9a64899d2115d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 5
+--- !u!58 &1926383406
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1926383399}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 1.0499325, y: -0.8625388}
+  serializedVersion: 2
+  m_Radius: 3.611351
 --- !u!1 &1974712994
 GameObject:
   m_ObjectHideFlags: 0
