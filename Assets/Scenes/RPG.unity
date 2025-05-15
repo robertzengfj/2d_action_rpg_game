@@ -1143,7 +1143,7 @@ Tilemap:
       - {fileID: -608137119, guid: 0c83ad5ea540dda4798d2d0eb296eea1, type: 3}
       - {fileID: -1000876155, guid: 0c83ad5ea540dda4798d2d0eb296eea1, type: 3}
       - {fileID: -1873629743, guid: 0c83ad5ea540dda4798d2d0eb296eea1, type: 3}
-      m_AnimationSpeed: 5.0000005
+      m_AnimationSpeed: 5
       m_AnimationTimeOffset: 0
       m_Flags: 0
   - first: {x: 3, y: 1, z: 0}
@@ -1621,7 +1621,7 @@ Transform:
   m_GameObject: {fileID: 519420028}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 12.9699335, y: 5.104991, z: -9.812973}
+  m_LocalPosition: {x: 12.969907, y: 5.104991, z: -9.812973}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -6619,6 +6619,7 @@ GameObject:
   - component: {fileID: 1926383404}
   - component: {fileID: 1926383405}
   - component: {fileID: 1926383406}
+  - component: {fileID: 1926383407}
   m_Layer: 0
   m_Name: Enemy_Torch
   m_TagString: Untagged
@@ -6780,6 +6781,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 06bb4bc2a399a5341bc9a64899d2115d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  anim: {fileID: 1926383407}
   speed: 5
 --- !u!58 &1926383406
 CircleCollider2D:
@@ -6816,6 +6818,27 @@ CircleCollider2D:
   m_Offset: {x: 1.0499325, y: -0.8625388}
   serializedVersion: 2
   m_Radius: 3.611351
+--- !u!95 &1926383407
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1926383399}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 67670282f3aca304ba74138a828516f8, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &1974712994
 GameObject:
   m_ObjectHideFlags: 0
