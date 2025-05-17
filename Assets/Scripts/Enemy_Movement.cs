@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,7 +7,7 @@ using UnityEngine.XR;
 public class Enemy_Movement : MonoBehaviour
 {
     private EnemyState enemyState;
-    public float attackRange = 2;
+    public float attackRange = 1.5f;
     private Rigidbody2D rb;
     private Transform player;
 
@@ -21,8 +22,9 @@ public class Enemy_Movement : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        ChangeState(EnemyState.Idle);
         rb = GetComponent<Rigidbody2D>();
+        ChangeState(EnemyState.Idle);
+
         anim = GetComponent<Animator>();
     }
 
@@ -35,27 +37,36 @@ public class Enemy_Movement : MonoBehaviour
         }
         else if (enemyState == EnemyState.Idle)
         {
-            rb.velocity = Vector2.zero;
+            // rb.velocity = Vector2.zero;
         }
         else if (enemyState == EnemyState.Attacking)
         {
             //do attack
-            
+            rb.velocity = Vector2.zero;
         }
     }
 
     void Chase()
     {
-                    // Check if the player is to the left or right of the enemy
-            if (player != null)
+        // Check if the player is to the left or right of the enemy
+        if (player != null)
+        {
+            if (Vector2.Distance(player.position, transform.position) <= attackRange)
             {
-                if ((player.position.x > transform.position.x && faceingDirection == -1) || (player.position.x < transform.position.x && faceingDirection == 1))
-                {
-                    Flip();
-                }
-                Vector2 direction = (player.position - transform.position).normalized;
-                rb.velocity = direction * speed;
+                Debug.Log("Player in range");
+                ChangeState(EnemyState.Attacking);
             }
+            else
+            {
+                ChangeState(EnemyState.Chasing);
+            }
+            if ((player.position.x < transform.position.x && faceingDirection == -1) || (player.position.x > transform.position.x && faceingDirection == 1))
+            {
+                Flip();
+            }
+            Vector2 direction = (player.position - transform.position).normalized;
+            rb.velocity = direction * speed;
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -79,11 +90,11 @@ public class Enemy_Movement : MonoBehaviour
         if (collision.gameObject.tag == "Player")
         {
             Debug.Log("Player out of range");
-            rb.velocity = Vector2.zero;
-           // isChasing = false;
+            // rb.velocity = Vector2.zero;
+            // isChasing = false;
             ChangeState(EnemyState.Idle);
         }
-       
+
     }
     void Flip()
     {
@@ -98,12 +109,13 @@ public class Enemy_Movement : MonoBehaviour
         //Exit the current state
         if (enemyState == EnemyState.Idle)
         {
-            anim.SetBool("isIdle", false);
+            anim.SetBool("IsIdle", false);
         }
         else if (enemyState == EnemyState.Chasing)
         {
             anim.SetBool("IsChasing", false);
-        }else if (enemyState == EnemyState.Attacking)
+        }
+        else if (enemyState == EnemyState.Attacking)
         {
             anim.SetBool("IsAttacking", false);
         }
@@ -111,17 +123,26 @@ public class Enemy_Movement : MonoBehaviour
         enemyState = newState;
         if (enemyState == EnemyState.Idle)
         {
-            anim.SetBool("isIdle", true);
+            anim.SetBool("IsIdle", true);
+            rb.velocity = Vector2.zero;
         }
         else if (enemyState == EnemyState.Chasing)
         {
             anim.SetBool("IsChasing", true);
-        }else if (enemyState == EnemyState.Attacking)
+        }
+        else if (enemyState == EnemyState.Attacking)
         {
             anim.SetBool("IsAttacking", true);
         }
 
 
+    }
+    
+    public void Attack()
+    {
+        // Implement attack logic here
+        Debug.Log("Attacking the player!");
+        // You can also add damage logic here
     }
 }
 public enum EnemyState
@@ -129,5 +150,5 @@ public enum EnemyState
     Idle,
     Chasing,
     Attacking,
-        
-    }
+
+}
