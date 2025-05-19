@@ -11,7 +11,7 @@ public class Enemy_Combat : MonoBehaviour
         if (collision.gameObject.CompareTag("Player"))
         {
             // Call the method to deal damage to the player
-           collision.gameObject.GetComponent<PlayerHealth>().ChangeHealth(-damage);
+          // collision.gameObject.GetComponent<PlayerHealth>().ChangeHealth(-damage);
         }
         
     }

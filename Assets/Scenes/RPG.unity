@@ -1068,7 +1068,7 @@ Tilemap:
       - {fileID: -308895848, guid: 0c83ad5ea540dda4798d2d0eb296eea1, type: 3}
       - {fileID: -1947400417, guid: 0c83ad5ea540dda4798d2d0eb296eea1, type: 3}
       - {fileID: -2098925831, guid: 0c83ad5ea540dda4798d2d0eb296eea1, type: 3}
-      m_AnimationSpeed: 5
+      m_AnimationSpeed: 5.0000005
       m_AnimationTimeOffset: 0
       m_Flags: 0
   - first: {x: -4, y: 1, z: 0}
@@ -1098,7 +1098,7 @@ Tilemap:
       - {fileID: -510795539, guid: 0c83ad5ea540dda4798d2d0eb296eea1, type: 3}
       - {fileID: -65103554, guid: 0c83ad5ea540dda4798d2d0eb296eea1, type: 3}
       - {fileID: -180308813, guid: 0c83ad5ea540dda4798d2d0eb296eea1, type: 3}
-      m_AnimationSpeed: 5.0000005
+      m_AnimationSpeed: 5
       m_AnimationTimeOffset: 0
       m_Flags: 0
   - first: {x: -2, y: 1, z: 0}
@@ -1534,6 +1534,37 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
+--- !u!1 &513879711
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 513879712}
+  m_Layer: 0
+  m_Name: DetectionPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &513879712
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 513879711}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1.17, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1926383403}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -3427,6 +3458,37 @@ Transform:
   - {fileID: 71084570}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1176744187
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1176744188}
+  m_Layer: 0
+  m_Name: AttackPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1176744188
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1176744187}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.53, y: -0.24, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1926383403}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1181411739
 GameObject:
   m_ObjectHideFlags: 0
@@ -4560,7 +4622,7 @@ GameObject:
   - component: {fileID: 1431314259}
   - component: {fileID: 1431314260}
   - component: {fileID: 1431314261}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -4745,8 +4807,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f9e56934eeaefda4c89b6653bb99be3d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentHealth: 3
-  maxHealth: 3
+  currentHealth: 100
+  maxHealth: 100
   healthText: {fileID: 1803410609}
   healthTextAnim: {fileID: 1803410611}
 --- !u!1 &1733936821
@@ -6753,7 +6815,9 @@ Transform:
   m_LocalPosition: {x: 5.13, y: -4.09, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 1176744188}
+  - {fileID: 513879712}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1926383404
@@ -6781,9 +6845,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 06bb4bc2a399a5341bc9a64899d2115d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackRange: 2
-  anim: {fileID: 1926383407}
+  attackRange: 1
+  damage: 1
+  attackPoint: {fileID: 1176744188}
+  playerLayer:
+    serializedVersion: 2
+    m_Bits: 8
+  weaponRange: 1
   speed: 5
+  anim: {fileID: 1926383407}
+  attackCooldown: 10
+  playerDetectionRange: 5
+  detectionPoint: {fileID: 513879712}
 --- !u!58 &1926383406
 CircleCollider2D:
   m_ObjectHideFlags: 0

@@ -6,16 +6,36 @@ using UnityEngine.XR;
 
 public class Enemy_Movement : MonoBehaviour
 {
-    private EnemyState enemyState;
+
     public float attackRange = 1.5f;
-    private Rigidbody2D rb;
-    private Transform player;
+    public int damage = 1;
+
+    public Transform attackPoint;
+
+    public LayerMask playerLayer;
+
+    public float weaponRange;
+
+    public float speed = 4f;
 
     public Animator anim;
 
-    // private bool isChasing;
+    public float attackCooldown = 2f;
 
-    public float speed = 4f;
+    public float playerDetectionRange = 3f;
+
+    public Transform detectionPoint;
+
+    //public LayerMask playerLayer;
+
+
+
+    private float attackCooldownTimer;
+
+    private EnemyState enemyState;
+
+    private Rigidbody2D rb;
+    private Transform player;
 
     private int faceingDirection = -1;
 
@@ -31,6 +51,17 @@ public class Enemy_Movement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        CheckForPlayer();
+        if (attackCooldownTimer > 0)
+        {
+            attackCooldownTimer -= Time.deltaTime;
+        }
+        if (enemyState == EnemyState.Attacking)
+        {
+
+            Attack();
+            attackCooldownTimer = attackCooldown;
+        }
         if (enemyState == EnemyState.Chasing)
         {
             Chase();
@@ -51,15 +82,7 @@ public class Enemy_Movement : MonoBehaviour
         // Check if the player is to the left or right of the enemy
         if (player != null)
         {
-            if (Vector2.Distance(player.position, transform.position) <= attackRange)
-            {
-                Debug.Log("Player in range");
-                ChangeState(EnemyState.Attacking);
-            }
-            else
-            {
-                ChangeState(EnemyState.Chasing);
-            }
+
             if ((player.position.x < transform.position.x && faceingDirection == -1) || (player.position.x > transform.position.x && faceingDirection == 1))
             {
                 Flip();
@@ -69,33 +92,73 @@ public class Enemy_Movement : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void CheckForPlayer()
     {
-        if (collision.gameObject.tag == "Player")
+        Collider2D[] hits = Physics2D.OverlapCircleAll(detectionPoint.position, playerDetectionRange, playerLayer);
+
+        if (hits.Length > 0)
         {
-            Debug.Log("Player detected");
-            if (player == null)
+
+            player = hits[0].transform;
+
+
+            if (Vector2.Distance(player.position, transform.position) <= attackRange && attackCooldownTimer <= 0)
             {
-                player = collision.transform;
+                Debug.Log("Player in range");
+                attackCooldownTimer = attackCooldown;
+                ChangeState(EnemyState.Attacking);
             }
-            //isChasing = true;
-            ChangeState(EnemyState.Chasing);
+            else if (Vector2.Distance(transform.position, player.position) > attackRange)
+            {
+                Debug.Log("Player out of range");
+                ChangeState(EnemyState.Chasing);
+            }
+
         }
-        //isChasing = true;
-
-    }
-
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        if (collision.gameObject.tag == "Player")
+        else
         {
-            Debug.Log("Player out of range");
-            // rb.velocity = Vector2.zero;
-            // isChasing = false;
+            rb.velocity = Vector2.zero;
             ChangeState(EnemyState.Idle);
         }
 
+        //   if (collision.gameObject.tag == "Player")
+        // {
+        //     Debug.Log("Player detected");
+        //     if (player == null)
+        //     {
+        //         player = collision.transform;
+        //     }
+        //     //isChasing = true;
+        //     ChangeState(EnemyState.Chasing);
+        // }
     }
+    // private void OnTriggerStay2D(Collider2D collision)
+    // {
+    //     if (collision.gameObject.tag == "Player")
+    //     {
+    //         Debug.Log("Player detected");
+    //         if (player == null)
+    //         {
+    //             player = collision.transform;
+    //         }
+    //         //isChasing = true;
+    //         ChangeState(EnemyState.Chasing);
+    //     }
+    //     //isChasing = true;
+
+    // }
+
+    // private void OnTriggerExit2D(Collider2D collision)
+    // {
+    //     if (collision.gameObject.tag == "Player")
+    //     {
+    //         Debug.Log("Player out of range");
+    //         // rb.velocity = Vector2.zero;
+    //         // isChasing = false;
+    //         ChangeState(EnemyState.Idle);
+    //     }
+
+    // }
     void Flip()
     {
         faceingDirection *= -1;
@@ -106,6 +169,7 @@ public class Enemy_Movement : MonoBehaviour
     }
     void ChangeState(EnemyState newState)
     {
+        Debug.Log("Changing state to: " + newState);
         //Exit the current state
         if (enemyState == EnemyState.Idle)
         {
@@ -132,17 +196,39 @@ public class Enemy_Movement : MonoBehaviour
         }
         else if (enemyState == EnemyState.Attacking)
         {
+            Debug.Log("Attacking");
             anim.SetBool("IsAttacking", true);
         }
 
 
     }
-    
+
     public void Attack()
     {
         // Implement attack logic here
         Debug.Log("Attacking the player!");
         // You can also add damage logic here
+
+        Collider2D[] hits = Physics2D.OverlapCircleAll(attackPoint.position, weaponRange, playerLayer);
+        if (hits.Length > 0)
+        {
+
+
+            Debug.Log("Hit player");
+            PlayerHealth playerHealth = hits[0].GetComponent<PlayerHealth>();
+            if (playerHealth != null)
+            {
+                playerHealth.ChangeHealth(-damage); // Adjust damage value as needed
+            }
+        }
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(detectionPoint.position, playerDetectionRange);
+        Gizmos.color = Color.blue;
+        Gizmos.DrawWireSphere(attackPoint.position, weaponRange);
     }
 }
 public enum EnemyState

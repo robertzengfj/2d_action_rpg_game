@@ -23,6 +23,7 @@ public class PlayerHealth : MonoBehaviour
         healthTextAnim.Play("TextUpdate");
         healthText.text = "HP: " + currentHealth.ToString()+" / "+maxHealth.ToString();
         if(currentHealth<=0){
+            Debug.Log("Player is dead");
             gameObject.SetActive(false);
         }
     }
