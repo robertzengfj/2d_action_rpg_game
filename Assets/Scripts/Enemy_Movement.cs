@@ -56,6 +56,7 @@ public class Enemy_Movement : MonoBehaviour
         {
             attackCooldownTimer -= Time.deltaTime;
         }
+        Debug.Log("attackCooldownTimer: " + attackCooldownTimer);
         if (enemyState == EnemyState.Attacking)
         {
 
