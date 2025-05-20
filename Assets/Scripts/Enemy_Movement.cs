@@ -171,33 +171,54 @@ public class Enemy_Movement : MonoBehaviour
     {
         Debug.Log("Changing state to: " + newState);
         //Exit the current state
-        if (enemyState == EnemyState.Idle)
-        {
-            anim.SetBool("IsIdle", false);
-        }
-        else if (enemyState == EnemyState.Chasing)
-        {
-            anim.SetBool("IsChasing", false);
-        }
-        else if (enemyState == EnemyState.Attacking)
-        {
-            anim.SetBool("IsAttacking", false);
-        }
-        //Update our current state
+        // if (enemyState == EnemyState.Idle)
+        // {
+        //     anim.SetBool("IsIdle", false);
+        // }
+        // else if (enemyState == EnemyState.Chasing)
+        // {
+        //     anim.SetBool("IsChasing", false);
+        // }
+        // else if (enemyState == EnemyState.Attacking)
+        // {
+        //     anim.SetBool("IsAttacking", false);
+        // }
+        // //Update our current state
+        // enemyState = newState;
+        // if (enemyState == EnemyState.Idle)
+        // {
+        //     anim.SetBool("IsIdle", true);
+        //     rb.velocity = Vector2.zero;
+        // }
+        // else if (enemyState == EnemyState.Chasing)
+        // {
+        //     anim.SetBool("IsChasing", true);
+        // }
+        // else if (enemyState == EnemyState.Attacking)
+        // {
+        //     Debug.Log("Attacking");
+        //     anim.SetBool("IsAttacking", true);
+        // }
         enemyState = newState;
-        if (enemyState == EnemyState.Idle)
+        switch (newState)
         {
-            anim.SetBool("IsIdle", true);
-            rb.velocity = Vector2.zero;
-        }
-        else if (enemyState == EnemyState.Chasing)
-        {
-            anim.SetBool("IsChasing", true);
-        }
-        else if (enemyState == EnemyState.Attacking)
-        {
-            Debug.Log("Attacking");
-            anim.SetBool("IsAttacking", true);
+            case EnemyState.Idle:
+                anim.SetBool("IsIdle", true);
+                anim.SetBool("IsAttacking", false);
+                anim.SetBool("IsChasing", false);
+                rb.velocity = Vector2.zero;
+                break;
+            case EnemyState.Chasing:
+                anim.SetBool("IsChasing", true);
+                anim.SetBool("IsAttacking", false);
+                anim.SetBool("IsIdle", false);
+                break;
+            case EnemyState.Attacking:
+                Debug.Log("Attacking");
+                anim.SetBool("IsAttacking", true);
+                anim.SetBool("IsChasing", false);
+                anim.SetBool("IsIdle", false);
+                break;
         }
 
 
