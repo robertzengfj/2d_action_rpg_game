@@ -22,7 +22,7 @@ public class Enemy_Movement : MonoBehaviour
 
     public float attackCooldown = 2f;
 
-    public float playerDetectionRange = 3f;
+    public float playerDetectionRange = 5f;
 
     public Transform detectionPoint;
 
@@ -82,6 +82,12 @@ public class Enemy_Movement : MonoBehaviour
         // Check if the player is to the left or right of the enemy
         if (player != null)
         {
+            if(Vector2.Distance(player.position, transform.position) <= attackRange&&attackCooldown<=0)
+            {
+                attackCooldownTimer = attackCooldown;
+                ChangeState(EnemyState.Attacking);
+            }
+         
 
             if ((player.position.x < transform.position.x && faceingDirection == -1) || (player.position.x > transform.position.x && faceingDirection == 1))
             {
@@ -101,7 +107,7 @@ public class Enemy_Movement : MonoBehaviour
 
             player = hits[0].transform;
 
-
+            //if player in attack range and cooldown is ready
             if (Vector2.Distance(player.position, transform.position) <= attackRange && attackCooldownTimer <= 0)
             {
                 Debug.Log("Player in range");
