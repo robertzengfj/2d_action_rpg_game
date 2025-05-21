@@ -2,19 +2,19 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.XR;
+
 
 public class Enemy_Movement : MonoBehaviour
 {
 
-    public float attackRange = 1.5f;
+    
     public int damage = 1;
 
-    public Transform attackPoint;
+    
 
-    public LayerMask playerLayer;
+    
 
-    public float weaponRange;
+    
 
     public float speed = 4f;
 
@@ -37,6 +37,8 @@ public class Enemy_Movement : MonoBehaviour
     private Rigidbody2D rb;
     private Transform player;
 
+    private Enemy_Combat enemyCombat;
+
     private int faceingDirection = -1;
 
     // Start is called before the first frame update
@@ -46,6 +48,8 @@ public class Enemy_Movement : MonoBehaviour
         ChangeState(EnemyState.Idle);
 
         anim = GetComponent<Animator>();
+
+        Enemy_Combat enemyCombat=GetComponent<Enemy_Combat>();
     }
 
     // Update is called once per frame
@@ -56,11 +60,12 @@ public class Enemy_Movement : MonoBehaviour
         {
             attackCooldownTimer -= Time.deltaTime;
         }
-        Debug.Log("attackCooldownTimer: " + attackCooldownTimer);
+        //Debug.Log("attackCooldownTimer: " + attackCooldownTimer);
         if (enemyState == EnemyState.Attacking)
         {
-
-            Attack();
+            if(enemyCombat!=null){
+            enemyCombat.Attack();
+            }
             attackCooldownTimer = attackCooldown;
         }
         if (enemyState == EnemyState.Chasing)
@@ -83,7 +88,7 @@ public class Enemy_Movement : MonoBehaviour
         // Check if the player is to the left or right of the enemy
         if (player != null)
         {
-            if(Vector2.Distance(player.position, transform.position) <= attackRange&&attackCooldown<=0)
+            if(Vector2.Distance(player.position, transform.position) <= enemyCombat.attackRange&&attackCooldown<=0)
             {
                 attackCooldownTimer = attackCooldown;
                 ChangeState(EnemyState.Attacking);
@@ -101,7 +106,7 @@ public class Enemy_Movement : MonoBehaviour
 
     private void CheckForPlayer()
     {
-        Collider2D[] hits = Physics2D.OverlapCircleAll(detectionPoint.position, playerDetectionRange, playerLayer);
+        Collider2D[] hits = Physics2D.OverlapCircleAll(detectionPoint.position, playerDetectionRange, enemyCombat.playerLayer);
 
         if (hits.Length > 0)
         {
@@ -109,15 +114,15 @@ public class Enemy_Movement : MonoBehaviour
             player = hits[0].transform;
 
             //if player in attack range and cooldown is ready
-            if (Vector2.Distance(player.position, transform.position) <= attackRange && attackCooldownTimer <= 0)
+            if (Vector2.Distance(player.position, transform.position) <= enemyCombat.attackRange && attackCooldownTimer <= 0)
             {
-                Debug.Log("Player in range");
+                //Debug.Log("Player in range");
                 attackCooldownTimer = attackCooldown;
                 ChangeState(EnemyState.Attacking);
             }
-            else if (Vector2.Distance(transform.position, player.position) > attackRange)
+            else if (Vector2.Distance(transform.position, player.position) > enemyCombat.attackRange)
             {
-                Debug.Log("Player out of range");
+                //Debug.Log("Player out of range");
                 ChangeState(EnemyState.Chasing);
             }
 
@@ -176,7 +181,7 @@ public class Enemy_Movement : MonoBehaviour
     }
     void ChangeState(EnemyState newState)
     {
-        Debug.Log("Changing state to: " + newState);
+        //Debug.Log("Changing state to: " + newState);
         //Exit the current state
         // if (enemyState == EnemyState.Idle)
         // {
@@ -231,32 +236,14 @@ public class Enemy_Movement : MonoBehaviour
 
     }
 
-    public void Attack()
-    {
-        // Implement attack logic here
-        Debug.Log("Attacking the player!");
-        // You can also add damage logic here
-
-        Collider2D[] hits = Physics2D.OverlapCircleAll(attackPoint.position, weaponRange, playerLayer);
-        if (hits.Length > 0)
-        {
-
-
-            Debug.Log("Hit player");
-            PlayerHealth playerHealth = hits[0].GetComponent<PlayerHealth>();
-            if (playerHealth != null)
-            {
-                playerHealth.ChangeHealth(-damage); // Adjust damage value as needed
-            }
-        }
-    }
+    
 
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(detectionPoint.position, playerDetectionRange);
         Gizmos.color = Color.blue;
-        Gizmos.DrawWireSphere(attackPoint.position, weaponRange);
+        Gizmos.DrawWireSphere(enemyCombat.attackPoint.position, enemyCombat.weaponRange);
     }
 }
 public enum EnemyState
