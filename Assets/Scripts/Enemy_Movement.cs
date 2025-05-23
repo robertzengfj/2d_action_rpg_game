@@ -49,7 +49,7 @@ public class Enemy_Movement : MonoBehaviour
 
         anim = GetComponent<Animator>();
 
-        Enemy_Combat enemyCombat=GetComponent<Enemy_Combat>();
+        enemyCombat=GetComponent<Enemy_Combat>();
     }
 
     // Update is called once per frame
@@ -120,7 +120,7 @@ public class Enemy_Movement : MonoBehaviour
                 attackCooldownTimer = attackCooldown;
                 ChangeState(EnemyState.Attacking);
             }
-            else if (Vector2.Distance(transform.position, player.position) > enemyCombat.attackRange)
+            else if (Vector2.Distance(transform.position, player.position) > enemyCombat.attackRange&&enemyState!=EnemyState.Attacking)
             {
                 //Debug.Log("Player out of range");
                 ChangeState(EnemyState.Chasing);
@@ -243,7 +243,10 @@ public class Enemy_Movement : MonoBehaviour
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(detectionPoint.position, playerDetectionRange);
         Gizmos.color = Color.blue;
+        if(enemyCombat){
+            Debug.Log("enemy combat exist");
         Gizmos.DrawWireSphere(enemyCombat.attackPoint.position, enemyCombat.weaponRange);
+        }
     }
 }
 public enum EnemyState

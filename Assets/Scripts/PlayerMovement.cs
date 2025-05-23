@@ -34,10 +34,16 @@ public class PlayerMovement : MonoBehaviour
         facingDirection*=-1;
         transform.localScale = new Vector3(facingDirection, transform.localScale.y, transform.localScale.z);
     }
-    public void Knockback(Transform enemy,float force){
+    public void Knockback(Transform enemy,float force,float stunTime){
         isKnockedback = true;
-        Vector2 direction=transform.position-enemy.position;
+        Vector2 direction=(transform.position-enemy.position).normalized;
         Debug.Log(direction);
-        rb.velocity=direction;
+        rb.velocity=direction*force;
+        StartCoroutine(KnockbackCounter(stunTime));
+    }
+    IEnumerator KnockbackCounter(float stunTime){
+        yield return new WaitForSeconds(stunTime);
+        rb.velocity=Vector2.zero;
+        isKnockedback = false;
     }
 }

@@ -11,16 +11,17 @@ public class Enemy_Combat : MonoBehaviour
 
     public LayerMask playerLayer;
     public Transform attackPoint;
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        // Check if the collided object has the tag "Player"
-        if (collision.gameObject.CompareTag("Player"))
-        {
-            // Call the method to deal damage to the player
-          collision.gameObject.GetComponent<PlayerHealth>().ChangeHealth(-damage);
-        }
-        
-    }
+    public float stunTime;
+    // private void OnCollisionEnter2D(Collision2D collision)
+    // {
+    //     // Check if the collided object has the tag "Player"
+    //     if (collision.gameObject.CompareTag("Player"))
+    //     {
+    //         // Call the method to deal damage to the player
+    //         collision.gameObject.GetComponent<PlayerHealth>().ChangeHealth(-damage);
+    //     }
+
+    // }
 
     public void Attack()
     {
@@ -39,7 +40,7 @@ public class Enemy_Combat : MonoBehaviour
 
             }
             PlayerMovement playerMovement=hits[0].GetComponent<PlayerMovement>();
-            playerMovement.Knockback(transform,knockbackForce);
+            playerMovement.Knockback(transform,knockbackForce,stunTime);
         }
     }
 }
