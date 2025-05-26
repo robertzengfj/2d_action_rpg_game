@@ -12,6 +12,14 @@ public class PlayerMovement : MonoBehaviour
     // Start is called before the first frame update
     private bool isKnockedback = false;
 
+    public Player_Combat player_Combat;
+    private void Update()
+    {
+        if (Input.GetButtonDown("Slash"))
+        {
+            player_Combat.Attack();
+        }
+    }
     // FixedUpdate is called once 50x frame
     void FixedUpdate()
     {

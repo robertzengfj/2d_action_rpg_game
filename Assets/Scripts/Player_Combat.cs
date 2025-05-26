@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Threading;
 using UnityEngine;
 
-public class Play_Combat : MonoBehaviour
+public class Player_Combat : MonoBehaviour
 {
     public Animator anim;
     public float cooldown = 2;
@@ -27,7 +27,7 @@ public class Play_Combat : MonoBehaviour
     {
         if (timer <= 0)
         {
-            anim.SetBool("isAttacking", true);
+            anim.SetBool("isAttaching", true);
             //Collider2D[] enemies=Physics2D.OverlapCircleAll()
             timer = cooldown;
         }
