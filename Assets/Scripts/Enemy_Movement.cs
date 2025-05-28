@@ -55,31 +55,35 @@ public class Enemy_Movement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        CheckForPlayer();
-        if (attackCooldownTimer > 0)
+        if (enemyState != EnemyState.Knockback)
         {
-            attackCooldownTimer -= Time.deltaTime;
-        }
-        //Debug.Log("attackCooldownTimer: " + attackCooldownTimer);
-        if (enemyState == EnemyState.Attacking)
-        {
-            if(enemyCombat!=null){
-            enemyCombat.Attack();
+            CheckForPlayer();
+            if (attackCooldownTimer > 0)
+            {
+                attackCooldownTimer -= Time.deltaTime;
             }
-            attackCooldownTimer = attackCooldown;
-        }
-        if (enemyState == EnemyState.Chasing)
-        {
-            Chase();
-        }
-        else if (enemyState == EnemyState.Idle)
-        {
-            // rb.velocity = Vector2.zero;
-        }
-        else if (enemyState == EnemyState.Attacking)
-        {
-            //do attack
-            rb.velocity = Vector2.zero;
+            //Debug.Log("attackCooldownTimer: " + attackCooldownTimer);
+            if (enemyState == EnemyState.Attacking)
+            {
+                if (enemyCombat != null)
+                {
+                    enemyCombat.Attack();
+                }
+                attackCooldownTimer = attackCooldown;
+            }
+            if (enemyState == EnemyState.Chasing)
+            {
+                Chase();
+            }
+            else if (enemyState == EnemyState.Idle)
+            {
+                // rb.velocity = Vector2.zero;
+            }
+            else if (enemyState == EnemyState.Attacking)
+            {
+                //do attack
+                rb.velocity = Vector2.zero;
+            }
         }
     }
 
@@ -179,7 +183,7 @@ public class Enemy_Movement : MonoBehaviour
         // transform.localScale = localScale;
         transform.localScale = new Vector3(transform.localScale.x * -1, transform.localScale.y, transform.localScale.z);
     }
-    void ChangeState(EnemyState newState)
+    public void ChangeState(EnemyState newState)
     {
         //Debug.Log("Changing state to: " + newState);
         //Exit the current state
@@ -254,5 +258,6 @@ public enum EnemyState
     Idle,
     Chasing,
     Attacking,
+    Knockback,
 
 }
