@@ -7,18 +7,18 @@ using UnityEngine;
 public class Player_Combat : MonoBehaviour
 {
     public Transform attackPoint;
-    public float weaponRange = 1;
+    //public float weaponRange = 1;
 
-    public float knockbackForce = 50;
-    public float knckbackTime=0.15f;
+    //public float knockbackForce = 50;
+    //public float knckbackTime=0.15f;
     public LayerMask enemyLayer;
 
-    public int damage = 1;
+    //public int damage = 1;
     public Animator anim;
     public float cooldown = 2;
     private float timer;
 
-    public float stunTime = 1;
+    //public float stunTime = 1;
 
     // Start is called before the first frame update
     void Start()
@@ -46,11 +46,11 @@ public class Player_Combat : MonoBehaviour
     }
     public void DealDamage()
     {
-        Collider2D[] enemies = Physics2D.OverlapCircleAll(attackPoint.position, weaponRange, enemyLayer);
+        Collider2D[] enemies = Physics2D.OverlapCircleAll(attackPoint.position, StatsManager.Instance.weaponRange, enemyLayer);
         if (enemies.Length > 0)
         {
-            enemies[0].GetComponent<Enemy_Health>().ChangeHealth(-damage);
-            enemies[0].GetComponent<Enemy_Knockback>().Knockback(transform,knockbackForce,knckbackTime,stunTime);
+            enemies[0].GetComponent<Enemy_Health>().ChangeHealth(-StatsManager.Instance.damage);
+            enemies[0].GetComponent<Enemy_Knockback>().Knockback(transform,StatsManager.Instance.knockbackForce,StatsManager.Instance.knockbackTime,StatsManager.Instance.stunTime);
         }
 
     }
@@ -62,7 +62,7 @@ public class Player_Combat : MonoBehaviour
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(attackPoint.position, weaponRange);
+        Gizmos.DrawWireSphere(attackPoint.position, StatsManager.Instance.weaponRange);
     }
 
 }

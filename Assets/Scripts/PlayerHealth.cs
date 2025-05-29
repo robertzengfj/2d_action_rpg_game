@@ -5,8 +5,8 @@ using TMPro;
 
 public class PlayerHealth : MonoBehaviour
 {
-    public int currentHealth;
-    public int maxHealth;
+    // public int currentHealth;
+    // public int maxHealth;
 
     public TMP_Text healthText;
 
@@ -15,14 +15,14 @@ public class PlayerHealth : MonoBehaviour
     private void Start()
     {
         
-        healthText.text = "HP: " + currentHealth.ToString()+" / "+maxHealth.ToString();
+        healthText.text = "HP: " + StatsManager.Instance.currentHealth.ToString()+" / "+StatsManager.Instance.maxHealth.ToString();
     }
 
     public void ChangeHealth(int amount){
-        currentHealth+= amount;
+        StatsManager.Instance.currentHealth+= amount;
         healthTextAnim.Play("TextUpdate");
-        healthText.text = "HP: " + currentHealth.ToString()+" / "+maxHealth.ToString();
-        if(currentHealth<=0){
+        healthText.text = "HP: " + StatsManager.Instance.currentHealth.ToString()+" / "+StatsManager.Instance.maxHealth.ToString();
+        if(StatsManager.Instance.currentHealth<=0){
             Debug.Log("Player is dead");
             gameObject.SetActive(false);
         }
