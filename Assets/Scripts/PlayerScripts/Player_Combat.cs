@@ -12,7 +12,7 @@ public class Player_Combat : MonoBehaviour
     //public float knockbackForce = 50;
     //public float knckbackTime=0.15f;
     public LayerMask enemyLayer;
-
+    public StatsUI statsUI;
     //public int damage = 1;
     public Animator anim;
     public float cooldown = 2;
@@ -46,6 +46,9 @@ public class Player_Combat : MonoBehaviour
     }
     public void DealDamage()
     {
+        StatsManager.Instance.damage += 1;
+
+        statsUI.UpdateDamage();
         Collider2D[] enemies = Physics2D.OverlapCircleAll(attackPoint.position, StatsManager.Instance.weaponRange, enemyLayer);
         if (enemies.Length > 0)
         {
