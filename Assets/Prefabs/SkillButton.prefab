@@ -65,7 +65,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 0/5
+  m_text: Locked
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 125cb55b44b24c4393181402bc6200e6, type: 2}
   m_sharedMaterial: {fileID: 2100000, guid: 125cb55b44b24c4393181402bc6200e6, type: 2}
@@ -328,7 +328,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 7598571183012323560}
   m_OnClick:
     m_PersistentCalls:
@@ -345,8 +345,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9dabfc7dde0fc4747820daa3a8c44fd9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skillSO: {fileID: 0}
+  skillSO: {fileID: 11400000, guid: f4e20e0a0c13d49f3963a22aae4f5806, type: 2}
+  currentLevel: 0
+  isUnlocked: 0
   skillIcon: {fileID: 8001529197079419281}
+  skillButton: {fileID: 3290657402776517387}
+  skillLevelText: {fileID: 3225352809732571173}
 --- !u!1 &6298206172285119552
 GameObject:
   m_ObjectHideFlags: 0
@@ -405,7 +409,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.5, g: 0.5, b: 0.5, a: 1}
   m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1

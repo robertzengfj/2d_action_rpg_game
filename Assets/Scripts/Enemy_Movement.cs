@@ -10,11 +10,6 @@ public class Enemy_Movement : MonoBehaviour
     
     public int damage = 1;
 
-    
-
-    
-
-    
 
     public float speed = 4f;
 
