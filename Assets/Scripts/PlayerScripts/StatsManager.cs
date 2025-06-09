@@ -1,10 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class StatsManager : MonoBehaviour
 {
     public static StatsManager Instance;
+    public TMP_Text healthText;
+
     [Header("Combat Stats")]
     public int damage;
     public float weaponRange;
@@ -30,5 +33,10 @@ public class StatsManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
+    }
+    public void UpdateMaxHealth(int amount)
+    {
+        maxHealth += amount;
+        healthText.text = "HP: " + currentHealth.ToString() + " / " + maxHealth.ToString();
     }
 }

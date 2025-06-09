@@ -13,11 +13,13 @@ public class SkillTreeManager : MonoBehaviour
     {
         SkillSlot.OnAbilityPointSpent += HandleAbilityPointSpent;
         SkillSlot.OnSkillMaxed += HandleSkillMaxed;
+        ExpManager.OnLevelUp += UpdateAbilityPoints;
     }
     private void OnDisable()
     {
         SkillSlot.OnAbilityPointSpent -= HandleAbilityPointSpent;
         SkillSlot.OnSkillMaxed -= HandleSkillMaxed;
+        ExpManager.OnLevelUp -= UpdateAbilityPoints;
     }
 
     private void Start()
@@ -56,7 +58,7 @@ public class SkillTreeManager : MonoBehaviour
     public void UpdateAbilityPoints(int amount)
     {
         availablePoints += amount;
-        pointsText.text = "Available Points: " + availablePoints.ToString();
+        pointsText.text = "Points: " + availablePoints.ToString();
     }
 
     public void HandleSkillMaxed(SkillSlot skillSlot)

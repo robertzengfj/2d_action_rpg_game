@@ -63,7 +63,10 @@ public class PlayerMovement : MonoBehaviour
     IEnumerator KnockbackCounter(float stunTime)
     {
         yield return new WaitForSeconds(stunTime);
-        rb.velocity = Vector2.zero;
+        if (rb)
+        {
+            rb.velocity = Vector2.zero;
+        }
         isKnockedback = false;
     }
 }
