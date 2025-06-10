@@ -2541,7 +2541,7 @@ Tilemap:
       - {fileID: -775407889, guid: f9bf93ae40523ef45bcf59f3c386a994, type: 3}
       - {fileID: 1844796759, guid: f9bf93ae40523ef45bcf59f3c386a994, type: 3}
       - {fileID: 286550685, guid: f9bf93ae40523ef45bcf59f3c386a994, type: 3}
-      m_AnimationSpeed: 5
+      m_AnimationSpeed: 5.0000005
       m_AnimationTimeOffset: 0
       m_Flags: 0
   - first: {x: 24, y: -5, z: 0}
@@ -2556,7 +2556,7 @@ Tilemap:
       - {fileID: -775407889, guid: f9bf93ae40523ef45bcf59f3c386a994, type: 3}
       - {fileID: 1844796759, guid: f9bf93ae40523ef45bcf59f3c386a994, type: 3}
       - {fileID: 286550685, guid: f9bf93ae40523ef45bcf59f3c386a994, type: 3}
-      m_AnimationSpeed: 5.0000005
+      m_AnimationSpeed: 5
       m_AnimationTimeOffset: 0
       m_Flags: 0
   - first: {x: -7, y: 1, z: 0}
@@ -2751,7 +2751,7 @@ Tilemap:
       - {fileID: -274215833, guid: 0c83ad5ea540dda4798d2d0eb296eea1, type: 3}
       - {fileID: 401616382, guid: 0c83ad5ea540dda4798d2d0eb296eea1, type: 3}
       - {fileID: -354440107, guid: 0c83ad5ea540dda4798d2d0eb296eea1, type: 3}
-      m_AnimationSpeed: 5.0000005
+      m_AnimationSpeed: 5
       m_AnimationTimeOffset: 0
       m_Flags: 0
   - first: {x: -4, y: 2, z: 0}
@@ -2886,7 +2886,7 @@ Tilemap:
       - {fileID: -918682771, guid: 0c83ad5ea540dda4798d2d0eb296eea1, type: 3}
       - {fileID: 633788951, guid: 0c83ad5ea540dda4798d2d0eb296eea1, type: 3}
       - {fileID: 522253669, guid: 0c83ad5ea540dda4798d2d0eb296eea1, type: 3}
-      m_AnimationSpeed: 5
+      m_AnimationSpeed: 5.0000005
       m_AnimationTimeOffset: 0
       m_Flags: 0
   - first: {x: -4, y: 3, z: 0}
@@ -6393,7 +6393,7 @@ CanvasGroup:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 860482017}
   m_Enabled: 1
-  m_Alpha: 1
+  m_Alpha: 0
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
@@ -8953,7 +8953,7 @@ Tilemap:
       - {fileID: 34308569, guid: 6f2b7726f56cee3479a02331ae3d7ebe, type: 3}
       - {fileID: -1521924169, guid: 6f2b7726f56cee3479a02331ae3d7ebe, type: 3}
       - {fileID: 1864242817, guid: 6f2b7726f56cee3479a02331ae3d7ebe, type: 3}
-      m_AnimationSpeed: 5
+      m_AnimationSpeed: 5.0000005
       m_AnimationTimeOffset: 0
       m_Flags: 0
   - first: {x: 3, y: -14, z: 0}
@@ -9709,7 +9709,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1431314254}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f7c31f776d2294e95a3f7c688522dfb6, type: 3}
   m_Name: 
@@ -10148,6 +10148,7 @@ GameObject:
   - component: {fileID: 1600769954}
   - component: {fileID: 1600769958}
   - component: {fileID: 1600769959}
+  - component: {fileID: 1600769960}
   m_Layer: 0
   m_Name: SkillCanvas
   m_TagString: Untagged
@@ -10183,9 +10184,9 @@ CanvasGroup:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1600769952}
   m_Enabled: 1
-  m_Alpha: 1
+  m_Alpha: 0
   m_Interactable: 1
-  m_BlocksRaycasts: 1
+  m_BlocksRaycasts: 0
   m_IgnoreParentGroups: 0
 --- !u!114 &1600769955
 MonoBehaviour:
@@ -10307,6 +10308,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff826becd3e474dd4a815dd745bb774f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  combat: {fileID: 1431314262}
+--- !u!114 &1600769960
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1600769952}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c3f604f8f61a94912947e7355507b239, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  statsCanvas: {fileID: 1600769954}
 --- !u!114 &1600805361 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1594393163878127743, guid: 4871547d24ef84688af441b93aa9acf7, type: 3}
@@ -40240,10 +40255,10 @@ PrefabInstance:
     - target: {fileID: 1594393163878127743, guid: 4871547d24ef84688af441b93aa9acf7, type: 3}
       propertyPath: skillSO
       value: 
-      objectReference: {fileID: 11400000, guid: f4e20e0a0c13d49f3963a22aae4f5806, type: 2}
+      objectReference: {fileID: 11400000, guid: c27218310172e435d94652cabac0d639, type: 2}
     - target: {fileID: 1594393163878127743, guid: 4871547d24ef84688af441b93aa9acf7, type: 3}
       propertyPath: isUnlocked
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1594393163878127743, guid: 4871547d24ef84688af441b93aa9acf7, type: 3}
       propertyPath: preprequisiteSkillSlots.Array.size

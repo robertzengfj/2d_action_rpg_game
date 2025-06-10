@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class SkillManager : MonoBehaviour
 {
+    public Player_Combat combat;
     private void OnEnable()
     {
         SkillSlot.OnAbilityPointSpent += HandleAbilityPointSpent;
@@ -22,6 +23,9 @@ public class SkillManager : MonoBehaviour
         {
             case "Max Health Boost":
                 StatsManager.Instance.UpdateMaxHealth(1);
+                break;
+            case "Sword Slash":
+                combat.enabled = true;
                 break;
             default:
                 Debug.LogWarning("Unknow skill: " + skillName);
