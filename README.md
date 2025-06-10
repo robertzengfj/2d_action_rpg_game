@@ -5,6 +5,12 @@ An 2D RPG Game include example of hero animation, tiles map (include animation t
 
 ![alt text](./doc/gameoverview.png "Game Overview")
 
+### Skill Panel
+![alt text](./doc/skill.png "Game Overview")
+
+
+### Stats Panel
+![alt text](./doc/stats.png "Game Overview")
 
 
 
