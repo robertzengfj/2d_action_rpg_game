@@ -17,17 +17,21 @@ public class Player_Bow : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        shootTimer-=Time.deltaTime;
         HandleAiming();
-        if (Input.GetButtonDown("Shoot"))
+        if (Input.GetButtonDown("Shoot")&& shootTimer <= 0)
         {
             Shoot();
+            //shootTimer = shootCooldown;
         }
+        
         //Shoot();
     }
     public void Shoot()
     {
         Arrow arrow = Instantiate(arrowPrefab, lauchPoint.position, Quaternion.identity).GetComponent<Arrow>();
         arrow.direction = aimDirection;
+        shootTimer = shootCooldown;
     }
     private void HandleAiming()
     {

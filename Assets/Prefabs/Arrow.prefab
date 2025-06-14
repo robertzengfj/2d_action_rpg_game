@@ -174,4 +174,16 @@ MonoBehaviour:
   rb: {fileID: 1845103970736231250}
   direction: {x: 1, y: 0}
   lifeSpawn: 2
-  speed: 8
+  speed: 10
+  enemyLayer:
+    serializedVersion: 2
+    m_Bits: 64
+  obstacleLayer:
+    serializedVersion: 2
+    m_Bits: 128
+  sr: {fileID: 2333946580586408577}
+  buriedSprite: {fileID: -2126249385, guid: ea5ba6687a29542c29ab7edab29e1127, type: 3}
+  damage: 2
+  KnockbackForce: 10
+  KnockbackTime: 0.5
+  stunTime: 1
