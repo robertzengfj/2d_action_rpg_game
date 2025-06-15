@@ -12,6 +12,8 @@ public class PlayerMovement : MonoBehaviour
     // Start is called before the first frame update
     private bool isKnockedback = false;
 
+    public bool isShooting;
+
     public Player_Combat player_Combat;
     void Start()
     {
@@ -30,7 +32,11 @@ public class PlayerMovement : MonoBehaviour
     // FixedUpdate is called once 50x frame
     void FixedUpdate()
     {
-        if (isKnockedback == false)
+        if(isShooting)
+        {
+            rb.velocity = Vector2.zero;
+            
+        }else if (isKnockedback == false)
         {
 
             float horizontal = Input.GetAxis("Horizontal");

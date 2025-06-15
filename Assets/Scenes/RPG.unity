@@ -2526,7 +2526,7 @@ Tilemap:
       - {fileID: -2144119586, guid: 0c83ad5ea540dda4798d2d0eb296eea1, type: 3}
       - {fileID: -953631176, guid: 0c83ad5ea540dda4798d2d0eb296eea1, type: 3}
       - {fileID: 607775650, guid: 0c83ad5ea540dda4798d2d0eb296eea1, type: 3}
-      m_AnimationSpeed: 5.0000005
+      m_AnimationSpeed: 5
       m_AnimationTimeOffset: 0
       m_Flags: 0
   - first: {x: -5, y: 3, z: 0}
@@ -3194,6 +3194,14 @@ PrefabInstance:
     - target: {fileID: 1395949043479296840, guid: 5a89d7de6b184411e802b30fbb73fe6a, type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 2162725143809515262, guid: 5a89d7de6b184411e802b30fbb73fe6a, type: 3}
+      propertyPath: anim
+      value: 
+      objectReference: {fileID: 1935662741}
+    - target: {fileID: 2162725143809515262, guid: 5a89d7de6b184411e802b30fbb73fe6a, type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2162725143809515262, guid: 5a89d7de6b184411e802b30fbb73fe6a, type: 3}
       propertyPath: lauchPoint
@@ -8175,7 +8183,7 @@ Tilemap:
       - {fileID: -247259584, guid: 6f2b7726f56cee3479a02331ae3d7ebe, type: 3}
       - {fileID: -576485555, guid: 6f2b7726f56cee3479a02331ae3d7ebe, type: 3}
       - {fileID: -1323201841, guid: 6f2b7726f56cee3479a02331ae3d7ebe, type: 3}
-      m_AnimationSpeed: 5
+      m_AnimationSpeed: 5.0000005
       m_AnimationTimeOffset: 0
       m_Flags: 0
   - first: {x: 5, y: -14, z: 0}
@@ -8370,7 +8378,7 @@ Tilemap:
       - {fileID: -606396752, guid: 6f2b7726f56cee3479a02331ae3d7ebe, type: 3}
       - {fileID: 422401513, guid: 6f2b7726f56cee3479a02331ae3d7ebe, type: 3}
       - {fileID: 628623316, guid: 6f2b7726f56cee3479a02331ae3d7ebe, type: 3}
-      m_AnimationSpeed: 5.0000005
+      m_AnimationSpeed: 5
       m_AnimationTimeOffset: 0
       m_Flags: 0
   - first: {x: 18, y: -4, z: 0}
