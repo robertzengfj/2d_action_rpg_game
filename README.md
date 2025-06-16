@@ -18,6 +18,10 @@ An 2D RPG Game include example of hero animation, tiles map (include animation t
 ### Remote attack
 ![alt text](./doc/shot.gif "Shot")
 
+### Collect Item
+![alt text](./doc/collectitem.gif "Shot")
+
+
 
 
 
