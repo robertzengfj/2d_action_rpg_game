@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 36f7a467e87cd435d87a82729a3ba334, type: 3}
   m_Name: Gold
   m_EditorClassIdentifier: 
-  itemName: Mushroom
+  itemName: Gold
   itemDescription: It's an item... it mushes??
-  icon: {fileID: 21300000, guid: bcf86eaf8dff042338f8cca30a264526, type: 3}
-  isGold: 0
-  currentHealth: 5
+  icon: {fileID: 21300000, guid: 7691f810c42a049678d61a17ec693905, type: 3}
+  isGold: 1
+  currentHealth: 0
   maxHealth: 0
   speed: 0
   damage: 0
