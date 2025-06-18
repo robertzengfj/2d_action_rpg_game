@@ -19,7 +19,11 @@ An 2D RPG Game include example of hero animation, tiles map (include animation t
 ![alt text](./doc/shot.gif "Shot")
 
 ### Collect Item
-![alt text](./doc/collectitem.gif "Shot")
+![alt text](./doc/collectitem.gif "collect item")
+
+### Inventory Manager
+![alt text](./doc/inventory.png "Inventory Manager")
+
 
 
 
