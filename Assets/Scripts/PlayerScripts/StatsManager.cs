@@ -6,6 +6,7 @@ using TMPro;
 public class StatsManager : MonoBehaviour
 {
     public static StatsManager Instance;
+    public StatsUI statsUI;
     public TMP_Text healthText;
 
     [Header("Combat Stats")]
@@ -38,5 +39,15 @@ public class StatsManager : MonoBehaviour
     {
         maxHealth += amount;
         healthText.text = "HP: " + currentHealth.ToString() + " / " + maxHealth.ToString();
+    }
+    public void UpdateHealth(int amount)
+    {
+        currentHealth += amount;
+        healthText.text = "HP: " + currentHealth + "/ " + maxHealth;
+    }
+    public void UpdateSpeed(int amount)
+    {
+        speed += amount;
+        statsUI.UpdateAllstats();
     }
 }

@@ -6,6 +6,7 @@ using UnityEngine;
 public class InventoryManager : MonoBehaviour
 {
     public InverntorySlot[] itemSlots;
+    public UseItem useItem;
     public int gold;
     public TMP_Text goldText;
 
@@ -28,8 +29,9 @@ public class InventoryManager : MonoBehaviour
 
     private void AddItem(ItemSO itemSO, int quantity)
     {
+        Debug.Log("add item into slot");
         // Add the item to the inventory
-        if (itemSO.isGold)
+        if (itemSO && (itemSO.isGold))
         {
             gold += quantity;
             goldText.text = gold.ToString();
@@ -41,12 +43,13 @@ public class InventoryManager : MonoBehaviour
             {
                 if (slot.itemSO == null)
                 {
+                    Debug.Log("update item into slot");
                     slot.itemSO = itemSO;
                     slot.quantity = quantity;
                     slot.UpdateUI();
                     return;
                 }
-                
+
             }
             UpdateUI();
         }
@@ -55,6 +58,21 @@ public class InventoryManager : MonoBehaviour
     private void UpdateUI()
     {
 
+    }
+
+    public void UseItem(InverntorySlot slot)
+    {
+        if (slot.itemSO != null && slot.quantity >= 0)
+        {
+            Debug.Log("Trying to use item:" + slot.itemSO.itemName);
+            useItem.ApplyItemEffects(slot.itemSO);
+            slot.quantity--;
+            if (slot.quantity <= 0)
+            {
+                slot.itemSO = null;
+            }
+            slot.UpdateUI();
+        }
     }
 
 
