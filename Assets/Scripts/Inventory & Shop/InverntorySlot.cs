@@ -25,9 +25,14 @@ public class InverntorySlot : MonoBehaviour,IPointerClickHandler
         //throw new System.NotImplementedException();
         if (quantity > 0)
         {
+           
             if (eventData.button == PointerEventData.InputButton.Left)
             {
-                inventoryManager.UseItem(this); 
+                if (itemSO.currentHealth>0&&StatsManager.Instance.currentHealth >= StatsManager.Instance.maxHealth)
+                {
+                    return;
+                }
+                inventoryManager.UseItem(this);
             }
         }
     }

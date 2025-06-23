@@ -17,9 +17,19 @@ public class Loot : MonoBehaviour
         {
             return;
         }
-        sr.sprite = itemSO.icon;
+       
+        this.UpdateAppearance();
+    }
+    public void Initialize(ItemSO itemSO, int quantity)
+    {
+        this.itemSO = itemSO;
+        this.quantity = quantity;
+        this.UpdateAppearance();
+    }
+    public void UpdateAppearance()
+    {
+         sr.sprite = itemSO.icon;
         this.name = itemSO.itemName;
-
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -28,7 +38,7 @@ public class Loot : MonoBehaviour
         {
             anim.Play("LootPickup");
             OnItemLooted?.Invoke(itemSO, quantity);
-            Destroy(gameObject,0.5f);
+            Destroy(gameObject, 0.5f);
         }
     }
 }

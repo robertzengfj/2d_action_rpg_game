@@ -23,6 +23,7 @@ public class StatsUI : MonoBehaviour
                  Time.timeScale = 1;
                   UpdateAllstats();
                 statsCanvas.alpha = 0;
+                statsCanvas.blocksRaycasts = false;
                 statsOpen = false;
             }
             else
@@ -31,6 +32,7 @@ public class StatsUI : MonoBehaviour
                 UpdateAllstats();
                 Debug.Log("Opening Stats");
                 statsCanvas.alpha = 1;
+                statsCanvas.blocksRaycasts = true;
                 statsOpen = true;
             }
         }

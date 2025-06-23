@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -9,6 +10,9 @@ public class InventoryManager : MonoBehaviour
     public UseItem useItem;
     public int gold;
     public TMP_Text goldText;
+    public GameObject lootPrefab;
+
+    public Transform player;
 
     private void Start()
     {
@@ -37,22 +41,47 @@ public class InventoryManager : MonoBehaviour
             goldText.text = gold.ToString();
             return;
         }
-        else
+        foreach (var slot in itemSlots)
         {
-            foreach (var slot in itemSlots)
+            if (slot.itemSO == itemSO && slot.quantity < itemSO.stackSize)
             {
-                if (slot.itemSO == null)
+                int availableSpace = itemSO.stackSize - slot.quantity;
+                int amountToAdd = Mathf.Min(availableSpace, quantity);
+                slot.quantity += amountToAdd;
+                quantity -= amountToAdd;
+                slot.UpdateUI();
+                if (quantity <= 0)
                 {
-                    Debug.Log("update item into slot");
-                    slot.itemSO = itemSO;
-                    slot.quantity = quantity;
-                    slot.UpdateUI();
                     return;
                 }
-
             }
-            UpdateUI();
         }
+        // else
+        // {
+        foreach (var slot in itemSlots) //if item exist, we need look for empty slot
+        {
+            if (slot.itemSO == null)
+            {
+                int amountToAdd = Mathf.Min(itemSO.stackSize - quantity);
+                Debug.Log("update item into slot");
+                slot.itemSO = itemSO;
+                slot.quantity = quantity;
+                slot.UpdateUI();
+                return;
+            }
+
+        }
+        if (quantity > 0)
+        {
+            DropLoot(itemSO, quantity);
+        }
+            //UpdateUI();
+        //}
+    }
+    private void DropLoot(ItemSO itemSO, int quanity)
+    {
+        Loot loot = Instantiate(lootPrefab, player.position, Quaternion.identity).GetComponent<Loot>();
+        loot.Initialize(itemSO,quanity);
     }
 
     private void UpdateUI()

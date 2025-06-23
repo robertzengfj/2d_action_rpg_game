@@ -9,6 +9,7 @@ public class ItemSO : ScriptableObject
     public string itemName;
     [TextArea] public string itemDescription;
     public Sprite icon;
+    public int stackSize = 3;
 
     public bool isGold;// the inventory will handle gold differently from other items, so this will notity the inventory whether it's gold or normal itemDescription
 
