@@ -106,6 +106,7 @@ MonoBehaviour:
   itemSO: {fileID: 11400000, guid: d1f64ad88c2524cc48d98669d642643d, type: 2}
   sr: {fileID: 7180077625347067488}
   anim: {fileID: 1129249158580903197}
+  canBePickedUp: 1
   quantity: 2
 --- !u!1 &7355914292630055865
 GameObject:
@@ -180,7 +181,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 459991612, guid: 4cb502c25c1344c00921ea0b261c0723, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 04b09beb5f0b1453d8cb4f34fb0e7efc, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

@@ -84,6 +84,17 @@ public class InventoryManager : MonoBehaviour
         loot.Initialize(itemSO,quanity);
     }
 
+    public void DropItem(InverntorySlot slot)
+    {
+        DropLoot(slot.itemSO, 1);
+        slot.quantity--;
+        if (slot.quantity <= 0)
+        {
+            slot.itemSO = null;
+        }
+        slot.UpdateUI();
+    }
+
     private void UpdateUI()
     {
 
