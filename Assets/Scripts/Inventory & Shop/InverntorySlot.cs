@@ -6,7 +6,7 @@ using UnityEngine.UI;
 using TMPro;
 using UnityEngine.EventSystems;
 
-public class InverntorySlot : MonoBehaviour,IPointerClickHandler
+public class InverntorySlot : MonoBehaviour, IPointerClickHandler
 {
     // Start is called before the first frame update
     public ItemSO itemSO;
@@ -16,9 +16,22 @@ public class InverntorySlot : MonoBehaviour,IPointerClickHandler
     public TMP_Text quantityText;
 
     private InventoryManager inventoryManager;
+    private static ShopManager activeShop;
     private void Start()
     {
-        inventoryManager = GetComponentInParent<InventoryManager>();  
+        inventoryManager = GetComponentInParent<InventoryManager>();
+    }
+    private void OnEnable()
+    {
+        ShopManager.OnShopStateChanged += HandleShopStateChanged;
+    }
+    private void OnDisable()
+    {
+        ShopManager.OnShopStateChanged -= HandleShopStateChanged;
+    }
+    private void HandleShopStateChanged(ShopManager shopManager, bool isOpen)
+    {
+        activeShop = isOpen ? shopManager : null;
     }
     public void OnPointerClick(PointerEventData eventData)
     {
@@ -28,11 +41,20 @@ public class InverntorySlot : MonoBehaviour,IPointerClickHandler
 
             if (eventData.button == PointerEventData.InputButton.Left)
             {
-                if (itemSO.currentHealth > 0 && StatsManager.Instance.currentHealth >= StatsManager.Instance.maxHealth)
+                if (activeShop != null)
                 {
-                    return;
+                    activeShop.SellItem(itemSO);
+                    quantity--;
+                    UpdateUI();
                 }
-                inventoryManager.UseItem(this);
+                else
+                {
+                    if (itemSO.currentHealth > 0 && StatsManager.Instance.currentHealth >= StatsManager.Instance.maxHealth)
+                    {
+                        return;
+                    }
+                    inventoryManager.UseItem(this);
+                }
             }
             else if (eventData.button == PointerEventData.InputButton.Right)
             {

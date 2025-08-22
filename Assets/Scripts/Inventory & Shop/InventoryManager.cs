@@ -31,7 +31,7 @@ public class InventoryManager : MonoBehaviour
         Loot.OnItemLooted -= AddItem;
     }
 
-    private void AddItem(ItemSO itemSO, int quantity)
+    public void AddItem(ItemSO itemSO, int quantity)
     {
         Debug.Log("add item into slot");
         // Add the item to the inventory
