@@ -16,6 +16,7 @@ public class InventoryManager : MonoBehaviour
 
     private void Start()
     {
+        goldText.text=gold.ToString();
         foreach (var slot in itemSlots)
         {
             slot.UpdateUI();
@@ -92,6 +93,7 @@ public class InventoryManager : MonoBehaviour
         {
             slot.itemSO = null;
         }
+        Debug.Log("Dropping item: " + slot.itemSO?.itemName);
         slot.UpdateUI();
     }
 

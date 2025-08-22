@@ -71,6 +71,7 @@ In contrast, an array (ShopItems[]) has a fixed size once created. If you want t
         {
             if (slot.itemSO == itemSO)
             {
+                Debug.Log("sell item");
                 inventoryManager.gold += slot.price;
                 inventoryManager.goldText.text = inventoryManager.gold.ToString();
                 return;

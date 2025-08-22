@@ -65,6 +65,10 @@ public class InverntorySlot : MonoBehaviour, IPointerClickHandler
 
     public void UpdateUI()
     {
+        if (quantity <= 0)
+        {
+            itemSO = null;
+        }
         if (itemSO != null)
         {
             Debug.Log("item so is not null");
